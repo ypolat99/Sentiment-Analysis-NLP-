@@ -53,3 +53,15 @@ df['text'] = df['text'].apply(lambda x: " ".join(x for x in x.split() if x not i
 from textblob import Word
 #nltk.download('wordnet')
 df['text'] = df['text'].apply(lambda x: " ".join([Word(word).lemmatize() for word in x.split()])) 
+
+#df.head()
+#df.iloc[0]
+
+
+# Seperate into TRAIN and TEST Parts
+
+train_x, test_x, train_y, test_y = model_selection.train_test_split(df["text"],df["label"], random_state=1)
+encoder = preprocessing.LabelEncoder()
+train_y = encoder.fit_transform(train_y)
+test_y = encoder.fit_transform(test_y)
+# train_y[0:5]
