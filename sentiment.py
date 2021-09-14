@@ -65,3 +65,32 @@ encoder = preprocessing.LabelEncoder()
 train_y = encoder.fit_transform(train_y)
 test_y = encoder.fit_transform(test_y)
 # train_y[0:5]
+
+
+# ADD VECTORIZERS
+
+#Count Vectors
+vectorizer = CountVectorizer()
+vectorizer.fit(train_x)
+x_train_count = vectorizer.transform(train_x)
+x_test_count = vectorizer.transform(test_x)
+vectorizer.get_feature_names()[0:5]
+
+#tf idfg --> word level
+tf_idf_word_vectorizer = TfidfVectorizer()
+tf_idf_word_vectorizer.fit(train_x)
+x_train_tf_idf_word = tf_idf_word_vectorizer.transform(train_x)
+x_test_tf_idf_word = tf_idf_word_vectorizer.transform(test_x)
+
+#n gram level tf-idf
+tf_idf_ngram_vectorizer = TfidfVectorizer(ngram_range = (2,3))
+tf_idf_ngram_vectorizer.fit(train_x)
+x_train_tf_idf_ngram = tf_idf_ngram_vectorizer.transform(train_x)
+x_test_tf_idf_ngram = tf_idf_ngram_vectorizer.transform(test_x)
+
+# character level tf -idf
+tf_idf_chars_vectorizer = TfidfVectorizer(analyzer = "char", ngram_range = (2,3))
+tf_idf_chars_vectorizer.fit(train_x)
+x_train_tf_idf_chars = tf_idf_chars_vectorizer.transform(train_x)
+x_test_tf_idf_chars = tf_idf_chars_vectorizer.transform(test_x)
+
