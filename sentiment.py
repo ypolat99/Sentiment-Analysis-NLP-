@@ -94,3 +94,36 @@ tf_idf_chars_vectorizer.fit(train_x)
 x_train_tf_idf_chars = tf_idf_chars_vectorizer.transform(train_x)
 x_test_tf_idf_chars = tf_idf_chars_vectorizer.transform(test_x)
 
+
+
+
+#MACHINE LEARNING PART
+
+# LOGISTIC REGRESSION
+
+#Count Vectors
+loj = linear_model.LogisticRegression()
+loj_model = loj.fit(x_train_count, train_y)
+accuracy = model_selection.cross_val_score(loj_model, x_test_count, test_y, cv=10).mean()
+print("Count Vectors Doğruluk Oranı: ", accuracy)
+
+# Word Level TF-IDF
+loj = linear_model.LogisticRegression()
+loj_model = loj.fit(x_train_tf_idf_word, train_y)
+accuracy = model_selection.cross_val_score(loj_model, x_test_tf_idf_word, test_y, cv=10).mean()
+print("Word-Level TF-IDF Doğruluk Oranı:", accuracy)
+
+#N-GRAM
+loj = linear_model.LogisticRegression()
+loj_model = loj.fit(x_train_tf_idf_ngram,train_y)
+accuracy = model_selection.cross_val_score(loj_model, x_test_tf_idf_ngram, test_y, cv = 10).mean()
+print("N-GRAM TF-IDF Doğruluk Oranı:", accuracy)
+
+# Char Level
+loj = linear_model.LogisticRegression()
+loj_model = loj.fit(x_train_tf_idf_chars,train_y)
+accuracy = model_selection.cross_val_score(loj_model, x_test_tf_idf_chars, test_y, cv = 10).mean()
+print("CHARLEVEL Doğruluk Oranı:", accuracy)
+
+
+# NAIVE BAYES
