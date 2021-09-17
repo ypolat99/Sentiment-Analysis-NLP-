@@ -158,3 +158,14 @@ xgboost.XGBClassifier()
 xgb_model = xgb.fit(x_train_count, train_y)
 accuracy = model_selection.cross_val_score(xgb_model, x_test_count, test_y, cv = 10).mean()
 print("Count Vectors Doğruluk Oranı:", accuracy)
+
+
+
+## TESTING WITH THE CHOSEN MODEL
+
+#loj_model.predict("yes i like this film")
+new_comment = pd.Series("tihs film is very nice and good i like it")
+v = CountVectorizer()
+v.fit(train_x)   ## Önemli NOKTA BURASI  !! IMPORTANT PART HERE
+new_comment = v.transform(new_comment )
+loj_model.predict(new_comment )  ## ---> OUTPUTS array([1]) where 1 == POSITIVE
