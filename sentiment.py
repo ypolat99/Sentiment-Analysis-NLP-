@@ -125,5 +125,25 @@ loj_model = loj.fit(x_train_tf_idf_chars,train_y)
 accuracy = model_selection.cross_val_score(loj_model, x_test_tf_idf_chars, test_y, cv = 10).mean()
 print("CHARLEVEL Doğruluk Oranı:", accuracy)
 
+#----------------------------------------------
 
 # NAIVE BAYES
+nb = naive_bayes.MultinomialNB()
+nb_model = nb.fit(x_train_count, train_y)
+accuracy = model_selection.cross_val_score(nb_model, x_test_count, test_y, cv=10).mean()
+print("Count Vectors Doğruluk Oranı:", accuracy)
+
+# Word Level TF-IDF
+nb = naive_bayes.MultinomialNB()
+nb_model = nb.fit(x_train_tf_idf_word,train_y)
+accuracy = model_selection.cross_val_score(nb_model, x_test_tf_idf_word, test_y, cv = 10).mean()
+print("Word-Level TF-IDF Doğruluk Oranı:", accuracy)
+
+
+
+rf = ensemble.RandomForestClassifier()
+rf_model = rf.fit(x_train_count, y_train)
+accuracy = model_selection.cross_val_score(rf_model, x_test_count,
+                                          test_y, cv=10).mean()
+
+print("Count Vectors Doğruluk Oranı:", accuracy)
