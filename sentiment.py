@@ -139,11 +139,22 @@ nb_model = nb.fit(x_train_tf_idf_word,train_y)
 accuracy = model_selection.cross_val_score(nb_model, x_test_tf_idf_word, test_y, cv = 10).mean()
 print("Word-Level TF-IDF Doğruluk Oranı:", accuracy)
 
+#----------------------------------------------
 
+# RANDOM FOREST
 
+# Count Vectores
 rf = ensemble.RandomForestClassifier()
 rf_model = rf.fit(x_train_count, y_train)
-accuracy = model_selection.cross_val_score(rf_model, x_test_count,
-                                          test_y, cv=10).mean()
+accuracy = model_selection.cross_val_score(rf_model, x_test_count, test_y, cv=10).mean()
+print("Count Vectors Doğruluk Oranı:", accuracy)
 
+#----------------------------------------------
+
+# XG BOOST
+
+# Count Vectores
+xgboost.XGBClassifier()
+xgb_model = xgb.fit(x_train_count, train_y)
+accuracy = model_selection.cross_val_score(xgb_model, x_test_count, test_y, cv = 10).mean()
 print("Count Vectors Doğruluk Oranı:", accuracy)
